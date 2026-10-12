@@ -1,26 +1,58 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-ink: #0c0d0a;
+  --color-surface: #1a1b14;
+  --color-well: #24251d;
+  --color-line: #2a2b22;
+  --color-muted: #8e8c80;
+  --color-faint: #5f5d53;
+  --color-paper: #edebe3;
+  --color-paper-hi: #f7f5ee;
+  --color-paper-ink: #14150f;
+  --color-paper-muted: #5e5c52;
+  --color-paper-line: #b9b6a8;
+  --color-paper-off: #d6d3c6;
+  --color-accent: #d4ff3a;
+  --color-over: #ff5b2e;
+  --color-over-paper: #c2370c;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-bricolage);
+  --animate-stamp: stamp 0.35s cubic-bezier(0.2, 1.6, 0.4, 1) both;
+
+  @keyframes stamp {
+    from {
+      opacity: 0;
+      transform: scale(1.6);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@media (prefers-reduced-motion: reduce) {
+  .animate-stamp {
+    animation: none;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--color-ink);
+  color: var(--color-paper);
   font-family: var(--font-geist-sans), system-ui, sans-serif;
+  color-scheme: dark;
+}
+
+/* Zig-zag torn edge along the bottom of a receipt. */
+.zig {
+  --zig: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / 18px 100%;
+  -webkit-mask: var(--zig);
+  mask: var(--zig);
+}
+
+.hatch-over {
+  background: repeating-linear-gradient(-45deg, #ff5b2e 0 8px, #e04a20 8px 16px);
 }
