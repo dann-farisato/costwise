@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Costwise
 
-## Getting Started
+**Every expense has a reason.**
 
-First, run the development server:
+Most budgeting apps ask *"how much did you spend?"*. Costwise asks *"what did you spend it on, and was it worth it?"*. Every expense belongs to a **task** (the goal behind the spending), so you can see budget against actual for each thing you're working toward.
+
+> Example: *Renovate the kitchen*, $5,000 budget → paint $320 + tiles $1,800 + contractor $2,500 = **92% used**.
+
+## Features
+
+- **Tasks with budgets**: title, budget, due date, and status (To do / In progress / Done)
+- **Expenses linked to tasks**: amount, category, date
+- **Budget tracking**: progress bars turn amber at 80% and red when over budget
+- **Dashboard**: total budget, spent, remaining, and the number of tasks over budget
+- **Spending by category** across all tasks
+- Inline budget editing, status filters, and a responsive layout
+- Data is saved in `localStorage`, and demo data loads on first visit (use "Reset demo data" to restore it)
+
+## Stack
+
+Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS 4. No backend and no extra UI dependencies.
+
+State lives in a small external store (`src/lib/store.ts`) backed by `localStorage`, read with `useSyncExternalStore` so server and client renders stay consistent.
+
+## Run locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Ideas for next steps
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Supabase auth + database for multi-device sync
+- Charts over time (monthly spend per task)
+- CSV export
+- Multi-currency
